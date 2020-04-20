@@ -15,13 +15,21 @@ class UserController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+        return back();
     }
 
-    public function delete()
+    public function destroy(User $user)
     {
+        $user->delete();
+
+        return back();
 
     }
 }
